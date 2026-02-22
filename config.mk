@@ -1,7 +1,6 @@
 # Default variables
 
 GAME_VERSION  ?= FIRERED
-GAME_REVISION ?= 0
 GAME_LANGUAGE ?= ENGLISH
 
 # Builds the ROM using a modern compiler
@@ -36,11 +35,6 @@ ifeq ($(GAME_VERSION),LEAFGREEN)
 else
   $(error unknown version $(GAME_VERSION))
 endif
-endif
-
-# Revision
-ifeq ($(GAME_REVISION),1)
-  BUILD_NAME  := $(BUILD_NAME)_rev1
 endif
 
 # Modern GCC

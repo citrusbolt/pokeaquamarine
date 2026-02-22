@@ -1063,11 +1063,7 @@ const u8 gMewPokedexText[] = _(
 const u8 gMewPokedexTextUnused[] = _("");
 
 const u8 gChikoritaPokedexText[] = _(
-#if REVISION == 0
-    "Its pleasantly aromatic leaves have the\n"
-    #else
     "Its pleasantly aromatic leaf has the\n"
-    #endif
     "ability to check the humidity and\n"
     "temperature."
 );
@@ -1740,15 +1736,9 @@ const u8 gPupitarPokedexText[] = _(
 const u8 gPupitarPokedexTextUnused[] = _("");
 
 const u8 gTyranitarPokedexText[] = _(
-#if REVISION == 0
-    "Its body can't be harmed by any sort of\n"
-    "attack, so it is very eager to make\n"
-    "challenges against enemies."
-#else
 "It has an impudent nature. Having great\n"
     "strength, it can even change surrounding\n"
     "landforms."
-#endif
 );
 
 const u8 gTyranitarPokedexTextUnused[] = _("");
