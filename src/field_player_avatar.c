@@ -508,8 +508,16 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
-        // Same speed as running
-        PlayerWalkFast(direction);
+        if (heldKeys & B_BUTTON)
+        {
+            // Same speed as going down Cycling Road
+            PlayerWalkFaster(direction);   
+        }
+        else
+        {
+            // Same speed as running
+            PlayerWalkFast(direction);
+        }
         return;
     }
 
