@@ -3833,7 +3833,10 @@ u8 *GetMapNameGeneric(u8 *dest, u16 mapsec)
 // Unclear why this function is used over GetMapNameGeneric
 u8 *GetMapNameGeneric_(u8 *dest, u16 mapsec)
 {
-    return GetMapNameGeneric(dest, mapsec);
+    if (mapsec == MAPSEC_CELADON_CITY)
+        return StringCopy(dest, sMapsecName_CELADON_CITY);
+    else
+        return GetMapNameGeneric(dest, mapsec);
 }
 
 static void PrintTopBarTextLeft(const u8 *str)
