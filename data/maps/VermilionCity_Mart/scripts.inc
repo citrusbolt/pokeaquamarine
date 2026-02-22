@@ -15,6 +15,16 @@ VermilionCity_Mart_EventScript_Clerk::
 	faceplayer
 	message Text_MayIHelpYou
 	waitmessage
+	pokemart 0
+	msgbox Text_PleaseComeAgain
+	release
+	end
+VermilionCity_Mart_EventScript_Clerk2::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	message Text_MayIHelpYou
+	waitmessage
 	pokemart VermilionCity_Mart_Items
 	msgbox Text_PleaseComeAgain
 	release
@@ -22,13 +32,7 @@ VermilionCity_Mart_EventScript_Clerk::
 
 	.align 2
 VermilionCity_Mart_Items::
-	.2byte ITEM_POKE_BALL
-	.2byte ITEM_SUPER_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	.2byte ITEM_ICE_HEAL
-	.2byte ITEM_REPEL
+	.2byte ITEM_NEST_BALL
 	.2byte ITEM_NONE
 	release
 	end
