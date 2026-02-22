@@ -105,6 +105,8 @@ extern const u8 gText_TMCaseWillBePutAway[];
 extern const u8 gText_FontSmall[];
 extern const u8 gText_FontNormal[];
 extern const u8 gText_OhNoICantBuyThat[];
+extern const u8 gText_ThrowInPremierBall[];
+extern const u8 gText_ThrowInPremierBalls[];
 extern const u8 gText_HowManyWouldYouLikeToSell[];
 extern const u8 gText_ICanPayThisMuch_WouldThatBeOkay[];
 extern const u8 gText_TurnedOverItemsWorthYen[];
