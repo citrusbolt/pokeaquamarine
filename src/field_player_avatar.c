@@ -1635,6 +1635,7 @@ static void Task_WaitStopSurfing(u8 taskId)
         UnlockPlayerFieldControls();
         UnfreezeObjectEvents();
         DestroySprite(&gSprites[playerObjEvent->fieldEffectSpriteId]);
+        playerObjEvent->triggerGroundEffectsOnMove = TRUE;
         DestroyTask(taskId);
         SetHelpContextForMap();
     }
