@@ -1230,11 +1230,7 @@ static bool8 ClockwiseWipe_Init(struct Task *task)
 static bool8 ClockwiseWipe_TopRight(struct Task *task)
 {
     sTransitionData->vblankDma = FALSE;
-#ifdef UBFIX
     InitBlackWipe(sTransitionData->data, DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sTransitionData->tWipeEndX, 0, 1, 1);
-#else
-    InitBlackWipe(sTransitionData->data, DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sTransitionData->tWipeEndX, -1, 1, 1);
-#endif
     do
     {
         gScanlineEffectRegBuffers[0][sTransitionData->tWipeCurrY] = WIN_RANGE(DISPLAY_WIDTH / 2, sTransitionData->tWipeCurrX + 1);

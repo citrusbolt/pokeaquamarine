@@ -604,11 +604,7 @@ static const u8 sUnsharedColumns[MAX_RFU_PLAYERS][MAX_RFU_PLAYERS] =
     {4, 6},
     {3, 5, 7},
     {2, 4, 6, 8},
-#ifndef BUGFIX
     {1, 3, 5, 6, 9}, // BUG: Column 6 is shared, 7 is not. As a result, the player in column 7 will have their difficulty influenced by their neighbors
-#else
-    {1, 3, 5, 7, 9},
-#endif
 };
 
 // Duplicate and unused gfx.
@@ -1989,10 +1985,7 @@ static void HandlePickBerries(void)
                 sGame->berryEatenBy[column] = playerIdPicked;
                 sGame->players[playerIdPicked].comm.ateBerry = TRUE;
 
-
-#ifdef UBFIX
                 if (playerIdMissed != PLAYER_NONE)
-#endif
                     sGame->players[playerIdMissed].comm.missedBerry = TRUE; // UB: playerIdMissed can be PLAYER_NONE here, which is out of bounds
 
                 sGame->berriesEaten[playerIdPicked]++;
@@ -2265,9 +2258,6 @@ static bool32 AllPlayersReadyToStart(void)
 
     numPlayers = numPlayers; // Needed to force compiler to keep loop below
 
-#ifdef BUGFIX
-    i = 1; // i isn't reset, loop below never runs. As a result, game can begin before all players ready
-#endif
     for (; i < numPlayers; i++)
     {
         if (!sGame->readyToStart[i])
@@ -3695,9 +3685,8 @@ static void FreeDodrioSprites(u8 numPlayers)
         struct Sprite *sprite = &gSprites[*sDodrioSpriteIds[i]];
         if (sprite)
             DestroySpriteAndFreeResources(sprite);
-#ifdef BUGFIX
-        FREE_AND_SET_NULL(sDodrioSpriteIds[i]); // Memory should be freed here but is not.
-#endif
+
+        FREE_AND_SET_NULL(sDodrioSpriteIds[i]);
     }
 }
 
@@ -3995,11 +3984,7 @@ static void UnusedSetSpritePos(u8 spriteId)
 
 // Gamefreak made a mistake there and goes out of bounds for the data array as it holds 8 elements
 // in turn overwriting sprite's subpriority and subsprites fields.
-#ifdef UBFIX
 #define sFrozen data[1]
-#else
-#define sFrozen data[10]
-#endif // BUGFIX
 
 static void SpriteCB_Cloud(struct Sprite *sprite)
 {

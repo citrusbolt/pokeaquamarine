@@ -2155,12 +2155,10 @@ void CalculateMonStats(struct Pokemon *mon)
         if (currentHP == 0 && oldMaxHP == 0)
             currentHP = newMaxHP;
         else if (currentHP != 0) {
-            // BUG: currentHP is unintentionally able to become <= 0 after the instruction below.
             currentHP += newMaxHP - oldMaxHP;
-            #ifdef BUGFIX
+
             if (currentHP <= 0)
                 currentHP = 1;
-            #endif
         }
         else
             return;
@@ -3654,11 +3652,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_IVS:
     {
-#ifdef BUGFIX
-        u32 ivs = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24);
-#else
         u32 ivs = *data; // Bug: Only the HP IV and the lower 3 bits of the Attack IV are read. The rest become 0.
-#endif
+
         substruct3->hpIV = ivs & MAX_IV_MASK;
         substruct3->attackIV = (ivs >> 5) & MAX_IV_MASK;
         substruct3->defenseIV = (ivs >> 10) & MAX_IV_MASK;
@@ -5403,17 +5398,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerId)
 
 static u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 {
-// Because this is a u16 it will be unable to store the
-// result of the multiplication for any stat > 595 for a
-// positive nature and > 728 for a negative nature.
-// Neither occur in the base game, but this can happen if
-// any Nature-affected base stat is increased to a value
-// above 248. The closest by default is Shuckle at 230.
-#ifdef BUGFIX
     u32 retVal;
-#else
-    u16 retVal;
-#endif
 
     // Don't modify HP, Accuracy, or Evasion by nature
     if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS)
