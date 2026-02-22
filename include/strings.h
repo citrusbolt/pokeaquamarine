@@ -395,8 +395,7 @@ extern const u8 gText_PkmnCantSwitchOut[];
 
 // credits
 extern const u8 gString_Dummy[];
-extern const u8 gString_PokemonFireRed_Staff[]; // FR
-extern const u8 gString_PokemonLeafGreen_Staff[]; // LG
+extern const u8 gString_Staff[];
 extern const u8 gCreditsString_Director[];
 extern const u8 gCreditsString_Junichi_Masuda[];
 extern const u8 gCreditsString_Art_Director_Battle_Director[];
@@ -766,15 +765,10 @@ extern const u8 gText_SodaPop[];
 extern const u8 gText_Lemonade[];
 extern const u8 gText_Bicycle_Price[];
 extern const u8 gText_NoThanks[];
-extern const u8 gText_Abra_180Coins[];
 extern const u8 gText_Clefairy_500Coins[];
+extern const u8 gText_Pinsir_2500Coins[];
 extern const u8 gText_Dratini_2800Coins[];
 extern const u8 gText_Scyther_5500Coins[];
-extern const u8 gText_Porygon_9999Coins[];
-extern const u8 gText_Abra_120Coins[];
-extern const u8 gText_Clefairy_750Coins[];
-extern const u8 gText_Pinsir_2500Coins[];
-extern const u8 gText_Dratini_4600Coins[];
 extern const u8 gText_Porygon_6500Coins[];
 extern const u8 gText_NoThanks_2[];
 extern const u8 gText_HelixFossil[];

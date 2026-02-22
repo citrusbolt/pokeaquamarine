@@ -1637,7 +1637,6 @@ static const u16 sHMMoves[] =
     MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_DIVE, HM_MOVES_END
 };
 
-#if defined(FIRERED)
 // Attack forme
 static const u16 sDeoxysBaseStats[] = 
 {
@@ -1648,9 +1647,8 @@ static const u16 sDeoxysBaseStats[] =
     [STAT_SPATK] = 180,
     [STAT_SPDEF] = 20,
 };
-#elif defined(LEAFGREEN)
-// Defense forme
-static const u16 sDeoxysBaseStats[] =
+
+static const u16 sDeoxysDefBaseStats[] =
 {
     [STAT_HP]    = 50,
     [STAT_ATK]   = 70,
@@ -1659,7 +1657,6 @@ static const u16 sDeoxysBaseStats[] =
     [STAT_SPATK] = 70,
     [STAT_SPDEF] = 160,
 };
-#endif
 
 // The classes used by other players in the Union Room.
 // These should correspond with the overworld graphics in sUnionRoomObjGfxIds

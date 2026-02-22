@@ -1,128 +1,23 @@
 gOtherText_NewName::
     .string "NEW NAME$"
 
-gNameChoice_Green::
-    .string "GREEN$"
-
 gNameChoice_Red::
     .string "RED$"
-
-gNameChoice_Leaf::
-    .string "LEAF$"
 
 gNameChoice_Fire::
     .string "FIRE$"
 
-gNameChoice_Gary::
-    .string "GARY$"
+gNameChoice_Leaf::
+    .string "LEAF$"
 
-gNameChoice_Kaz::
-    .string "KAZ$"
+gNameChoice_Green::
+    .string "GREEN$"
 
-gNameChoice_Toru::
-    .string "TORU$"
+gNameChoice_Blue::
+    .string "BLUE$"
 
-gNameChoice_Ash::
-    .string "ASH$"
-
-gNameChoice_Kene::
-    .string "KENE$"
-
-gNameChoice_Geki::
-    .string "GEKI$"
-
-gNameChoice_Jak::
-    .string "JAK$"
-
-gNameChoice_Janne::
-    .string "JANNE$"
-
-gNameChoice_Jonn::
-    .string "JONN$"
-
-gNameChoice_Kamon::
-    .string "KAMON$"
-
-gNameChoice_Karl::
-    .string "KARL$"
-
-gNameChoice_Taylor::
-    .string "TAYLOR$"
-
-gNameChoice_Oscar::
-    .string "OSCAR$"
-
-gNameChoice_Hiro::
-    .string "HIRO$"
-
-gNameChoice_Max::
-    .string "MAX$"
-
-gNameChoice_Jon::
-    .string "JON$"
-
-gNameChoice_Ralph::
-    .string "RALPH$"
-
-gNameChoice_Kay::
-    .string "KAY$"
-
-gNameChoice_Tosh::
-    .string "TOSH$"
-
-gNameChoice_Roak::
-    .string "ROAK$"
-
-gNameChoice_Omi::
-    .string "OMI$"
-
-gNameChoice_Jodi::
-    .string "JODI$"
-
-gNameChoice_Amanda::
-    .string "AMANDA$"
-
-gNameChoice_Hillary::
-    .string "HILLARY$"
-
-gNameChoice_Makey::
-    .string "MAKEY$"
-
-gNameChoice_Michi::
-    .string "MICHI$"
-
-gNameChoice_Paula::
-    .string "PAULA$"
-
-gNameChoice_June::
-    .string "JUNE$"
-
-gNameChoice_Cassie::
-    .string "CASSIE$"
-
-gNameChoice_Rey::
-    .string "REY$"
-
-gNameChoice_Seda::
-    .string "SEDA$"
-
-gNameChoice_Kiko::
-    .string "KIKO$"
-
-gNameChoice_Mina::
-    .string "MINA$"
-
-gNameChoice_Norie::
-    .string "NORIE$"
-
-gNameChoice_Sai::
-    .string "SAI$"
-
-gNameChoice_Momo::
-    .string "MOMO$"
-
-gNameChoice_Suzi::
-    .string "SUZI$"
+gNameChoice_Aqua::
+    .string "AQUA$"
 
 gControlsGuide_Text_Intro::
     .string "The various buttons will be explained in\n"

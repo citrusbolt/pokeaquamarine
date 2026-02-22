@@ -45,7 +45,7 @@ void HealPlayerParty(void)
     }
 }
 
-u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
+u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 version, u32 unused2, u8 unused3)
 {
     u16 nationalDexNum;
     int sentToPc;
@@ -56,6 +56,10 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, heldItem);
+
+    if (version != 0)
+        SetMonData(mon, MON_DATA_MET_GAME, &version);
+
     sentToPc = GiveMonToPlayer(mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);
 

@@ -33,21 +33,6 @@ static const struct InGameTrade sInGameTrades[] = {
     }, 
     [INGAME_TRADE_NIDORAN] = 
     {
-#if defined(FIRERED)
-        .nickname = _("MS. NIDO"),
-        .species = SPECIES_NIDORAN_F,
-        .ivs = {22, 18, 25, 19, 15, 22},
-        .abilityNum = 0,
-        .otId = 63184,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x4c970b89,
-        .heldItem = ITEM_TINY_MUSHROOM,
-        .mailNum = 255,
-        .otName = _("SAIGE"),
-        .otGender = FEMALE,
-        .sheen = 10,
-        .requestedSpecies = SPECIES_NIDORAN_M
-#elif defined(LEAFGREEN)
         .nickname = _("MR. NIDO"),
         .species = SPECIES_NIDORAN_M,
         .ivs = {19, 25, 18, 22, 22, 15},
@@ -61,7 +46,6 @@ static const struct InGameTrade sInGameTrades[] = {
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_NIDORAN_F
-#endif
     }, 
     [INGAME_TRADE_FARFETCHD] = 
     {
@@ -81,21 +65,6 @@ static const struct InGameTrade sInGameTrades[] = {
     }, 
     [INGAME_TRADE_NIDORINOA] = 
     {
-#if defined(FIRERED)
-        .nickname = _("NINA"),
-        .species = SPECIES_NIDORINA,
-        .ivs = {22, 25, 18, 19, 22, 15},
-        .abilityNum = 0,
-        .otId = 13637,
-        .conditions = {5, 5, 30, 5, 5},
-        .personality = 0x00eeca15,
-        .heldItem = ITEM_NONE,
-        .mailNum = 255,
-        .otName = _("TURNER"),
-        .otGender = MALE,
-        .sheen = 10,
-        .requestedSpecies = SPECIES_NIDORINO
-#elif defined(LEAFGREEN)
         .nickname = _("NINO"),
         .species = SPECIES_NIDORINO,
         .ivs = {19, 18, 25, 22, 15, 22},
@@ -109,7 +78,6 @@ static const struct InGameTrade sInGameTrades[] = {
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_NIDORINA
-#endif
     }, 
     [INGAME_TRADE_LICKITUNG] = 
     {
@@ -125,11 +93,7 @@ static const struct InGameTrade sInGameTrades[] = {
         .otName = _("HADEN"),
         .otGender = MALE,
         .sheen = 10,
-#if defined(FIRERED)
-        .requestedSpecies = SPECIES_GOLDUCK
-#elif defined(LEAFGREEN)
         .requestedSpecies = SPECIES_SLOWBRO
-#endif
     }, 
     [INGAME_TRADE_ELECTRODE] = 
     {

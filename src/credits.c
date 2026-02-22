@@ -16,12 +16,6 @@
 #include "constants/field_weather.h"
 #include "constants/sound.h"
 
-#if defined(FIRERED)
-#define TITLE_TEXT gString_PokemonFireRed_Staff
-#elif defined(LEAFGREEN)
-#define TITLE_TEXT gString_PokemonLeafGreen_Staff
-#endif
-
 enum CreditsSceneIdx
 {
     CREDITSSCENE_INIT_WIN0 = 0,
@@ -865,7 +859,7 @@ static s32 RollCredits(void)
             
         }
         sCreditsMgr->timer = 360;
-        AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_NORMAL_COPY_1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, TITLE_TEXT);
+        AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_NORMAL_COPY_1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, gString_Staff);
         sCreditsMgr->mainseqno = CREDITSSCENE_WAIT_TITLE_STAFF;
         return 0;
     case CREDITSSCENE_WAIT_TITLE_STAFF:

@@ -45,7 +45,7 @@ else
   CPP := $(PREFIX)cpp
 endif
 
-ROM := poke$(BUILD_NAME).gba
+ROM := $(BUILD_NAME).gba
 OBJ_DIR := $(BUILD_DIR)/$(BUILD_NAME)
 
 ELF := $(ROM:.gba=.elf)
@@ -69,14 +69,14 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 SHELL := bash -o pipefail
 
 # Set flags for tools
-ASFLAGS := -mcpu=arm7tdmi --defsym $(GAME_VERSION)=1 --defsym $(GAME_LANGUAGE)=1 --defsym MODERN=$(MODERN)
+ASFLAGS := -mcpu=arm7tdmi --defsym $(GAME_LANGUAGE)=1 --defsym MODERN=$(MODERN)
 
 INCLUDE_DIRS := include
 INCLUDE_CPP_ARGS := $(INCLUDE_DIRS:%=-iquote %)
 INCLUDE_SCANINC_ARGS := $(INCLUDE_DIRS:%=-I %)
 
 O_LEVEL ?= 2
-CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -D$(GAME_VERSION) -D$(GAME_LANGUAGE) -DMODERN=$(MODERN)
+CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -D$(GAME_LANGUAGE) -DMODERN=$(MODERN)
 ifeq ($(MODERN),0)
   CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef -std=gnu89
   CC1 := tools/agbcc/bin/agbcc$(EXE)
@@ -214,15 +214,8 @@ clean-assets:
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
 
 tidy:
-	$(RM) $(ALL_BUILDS:%=poke%{.gba,.elf,.map})
+	$(RM) $(ALL_BUILDS:%=${BUILD_NAME}{.gba,.elf,.map})
 	$(RM) -r $(BUILD_DIR)
-
-# "friendly" target names for convenience sake
-firered:                ; @$(MAKE) GAME_VERSION=FIRERED
-leafgreen:              ; @$(MAKE) GAME_VERSION=LEAFGREEN
-
-firered_modern:        ; @$(MAKE) GAME_VERSION=FIRERED MODERN=1
-leafgreen_modern:      ; @$(MAKE) GAME_VERSION=LEAFGREEN MODERN=1
 
 # Other rules
 include graphics_file_rules.mk
