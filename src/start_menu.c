@@ -44,6 +44,7 @@ enum StartMenuOption
     STARTMENU_BAG,
     STARTMENU_PLAYER,
     STARTMENU_SAVE,
+    STARTMENU_SAVE_R,
     STARTMENU_OPTION,
     STARTMENU_EXIT,
     STARTMENU_RETIRE,
@@ -118,6 +119,7 @@ static const struct MenuAction sStartMenuActionTable[] = {
     [STARTMENU_BAG]     = { gText_MenuBag,     {.u8_void = StartMenuBagCallback} },
     [STARTMENU_PLAYER]  = { gText_MenuPlayer,  {.u8_void = StartMenuPlayerCallback} },
     [STARTMENU_SAVE]    = { gText_MenuSave,    {.u8_void = StartMenuSaveCallback} },
+    [STARTMENU_SAVE_R]  = { gText_MenuSaveR,   {.u8_void = StartMenuSaveCallback} },
     [STARTMENU_OPTION]  = { gText_MenuOption,  {.u8_void = StartMenuOptionCallback} },
     [STARTMENU_EXIT]    = { gText_MenuExit,    {.u8_void = StartMenuExitCallback} },
     [STARTMENU_RETIRE]  = { gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback} },
@@ -217,7 +219,10 @@ static void SetUpStartMenu_NormalField(void)
         AppendToStartMenuItems(STARTMENU_POKEMON);
     AppendToStartMenuItems(STARTMENU_BAG);
     AppendToStartMenuItems(STARTMENU_PLAYER);
-    AppendToStartMenuItems(STARTMENU_SAVE);
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
+        AppendToStartMenuItems(STARTMENU_SAVE);
+    else
+        AppendToStartMenuItems(STARTMENU_SAVE_R);
     AppendToStartMenuItems(STARTMENU_OPTION);
     AppendToStartMenuItems(STARTMENU_EXIT);
 }
@@ -326,7 +331,7 @@ static s8 DoDrawStartMenu(void)
         break;
     case 5:
         sStartMenuCursorPos = Menu_InitCursor(GetStartMenuWindowId(), FONT_NORMAL, 0, 0, 15, sNumStartMenuItems, sStartMenuCursorPos);
-        if (!MenuHelpers_IsLinkActive() && InUnionRoom() != TRUE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
+        if (!MenuHelpers_IsLinkActive() && InUnionRoom() != TRUE)
         {
             DrawHelpMessageWindowWithText(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]]);
         }
@@ -439,6 +444,15 @@ static bool8 StartCB_HandleInput(void)
         DestroyHelpMessageWindow_();
         CloseStartMenu();
         return TRUE;
+    }
+    if (JOY_NEW(R_BUTTON))
+    {
+        if (!MenuHelpers_IsLinkActive() && !InUnionRoom() && !GetSafariZoneFlag())
+        {
+            PlaySE(SE_SELECT);
+            sStartMenuCallback = StartMenuSaveCallback;
+            return FALSE;
+        }
     }
     return FALSE;
 }

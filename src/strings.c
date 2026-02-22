@@ -161,6 +161,7 @@ const u8 gText_MenuBag[] = _("BAG");
 const u8 gText_MenuPokenav[] = _("ポケナビ");
 const u8 gText_MenuPlayer[] = _("{PLAYER}");
 const u8 gText_MenuSave[] = _("SAVE");
+const u8 gText_MenuSaveR[] = _("SAVE {R_BUTTON}");
 const u8 gText_MenuOption[] = _("OPTION");
 const u8 gText_MenuExit[] = _("EXIT");
 const u8 gText_MenuRetire[] = _("RETIRE");
