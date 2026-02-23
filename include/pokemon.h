@@ -12,7 +12,9 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
-    u16 filler;
+    u8 versionModifier;
+    u8 title:6;
+    u8 unused:2;
 };
 
 struct PokemonSubstruct1
@@ -112,11 +114,19 @@ struct BoxPokemon
     u8 hasSpecies:1;
     u8 isEgg:1;
     u8 blockBoxRS:1; // Unused, but Pokémon Box Ruby & Sapphire will refuse to deposit a Pokémon with this flag set
-    u8 unused:4;
+    u8 newBall:4;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u16 unknown;
+    u16 mint:5;
+    u16 form:4;
+    u16 hyperTrainedHP:1;
+    u16 hyperTrainedAttack:1;
+    u16 hyperTrainedDefense:1;
+    u16 hyperTrainedSpeed:1;
+    u16 hyperTrainedSpAttack:1;
+    u16 hyperTrainedSpDefense:1;
+    u16 unused:1;
 
     union
     {
@@ -222,6 +232,7 @@ struct SpeciesInfo
  /* 0x0A */ u16 evYield_Speed:2;
  /* 0x0B */ u16 evYield_SpAttack:2;
  /* 0x0B */ u16 evYield_SpDefense:2;
+            u16 padding1:4;
  /* 0x0C */ u16 itemCommon;
  /* 0x0E */ u16 itemRare;
  /* 0x10 */ u8 genderRatio;
@@ -280,6 +291,49 @@ struct Evolution
 ) % NUM_UNOWN_FORMS)
 
 #define GET_SHINY_VALUE(otId, personality) (HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality))
+
+enum
+{
+    PIDIV_METHOD_1,
+    PIDIV_METHOD_REVERSE_U,
+    PIDIV_METHOD_REVERSE_R,
+    PIDIV_METHOD_2,
+    PIDIV_METHOD_EGG,
+    PIDIV_METHOD_EGG_NATURE,
+    PIDIV_METHOD_EGG_GIFT,
+    PIDIV_METHOD_CXD,
+};
+
+enum
+{
+    GENERATE_SHINY_NORMAL,
+    GENERATE_SHINY_LOCKED,
+    GENERATE_SHINY_FORCED
+};
+
+struct PIDParameters
+{
+    u32 species;
+    u32 pidIVMethod;
+    u32 shinyLock;
+    u32 shinyRolls;
+    bool32 forceNature;
+    u32 nature;
+    bool32 forceGender;
+    u32 gender;
+    bool32 forceUnownLetter;
+    u32 unownLetter;
+};
+
+struct IVs
+{
+    u32 hp;
+    u32 atk;
+    u32 def;
+    u32 speed;
+    u32 spAtk;
+    u32 spDef;
+};
 
 extern const struct BattleMove gBattleMoves[];
 extern u8 gPlayerPartyCount;
