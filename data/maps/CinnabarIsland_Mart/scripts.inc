@@ -19,3 +19,21 @@ CinnabarIsland_Mart_EventScript_Clerk::
 	msgbox Text_PleaseComeAgain
 	release
 	end
+
+CinnabarIsland_Mart_EventScript_Clerk2::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	message Text_MayIHelpYou
+	waitmessage
+	pokemart CinnabarIsland_Mart_Items
+	msgbox Text_PleaseComeAgain
+	release
+	end
+
+	.align 2
+CinnabarIsland_Mart_Items::
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_NONE
+	release
+	end
