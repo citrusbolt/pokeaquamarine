@@ -1203,7 +1203,7 @@ gFameCheckerFlavorTextOriginObjectName_Koga2::
 	.string "KIRK$"
 
 gFameCheckerFlavorTextOriginObjectName_Koga3::
-	.string "CHARINE$"
+	.string "JANINE$"
 
 gFameCheckerFlavorTextOriginObjectName_Koga4::
 	.string "POKéMON JOURNAL$"
