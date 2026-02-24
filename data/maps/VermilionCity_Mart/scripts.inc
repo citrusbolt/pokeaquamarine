@@ -33,6 +33,15 @@ VermilionCity_Mart_EventScript_Clerk2::
 	.align 2
 VermilionCity_Mart_Items::
 	.2byte ITEM_NEST_BALL
+	.2byte ITEM_BEAD_MAIL
+	.2byte ITEM_GLITTER_MAIL
+	.2byte ITEM_HARBOR_MAIL
+	.2byte ITEM_MECH_MAIL
+	.2byte ITEM_ORANGE_MAIL
+	.2byte ITEM_SHADOW_MAIL
+	.2byte ITEM_TROPIC_MAIL
+	.2byte ITEM_WAVE_MAIL
+	.2byte ITEM_WOOD_MAIL
 	.2byte ITEM_NONE
 	release
 	end
