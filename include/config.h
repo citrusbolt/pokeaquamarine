@@ -36,7 +36,7 @@
 #endif // NDEBUG
 
 // Define the game version for use elsewhere
-#define GAME_VERSION VERSION_LEAF_GREEN
+#define GAME_VERSION VERSION_LEAFGREEN
 
 // rev1 renamed the source folder for reasons
 #define CODE_ROOT "C:/WORK/POKeFRLG/Src/pm_lgfr_ose/source/"

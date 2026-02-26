@@ -420,7 +420,7 @@ static void Task_LinkupAwaitTrainerCardData(u8 taskId)
     for (i = 0; i < GetLinkPlayerCount(); i++)
     {
         version = gLinkPlayers[i].version & 0xFF;
-        if (version != VERSION_FIRE_RED && version != VERSION_LEAF_GREEN)
+        if (version != VERSION_FIRERED && version != VERSION_LEAFGREEN)
         {
             const struct TrainerCardRSE * src = (const struct TrainerCardRSE *)gBlockRecvBuffer[i];
             gTrainerCards[i].rse = *src;

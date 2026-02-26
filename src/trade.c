@@ -2812,7 +2812,7 @@ s32 GetGameProgressForLinkTrade(void)
         versionId = 0;
         version = (gLinkPlayers[GetMultiplayerId() ^ 1].version & 0xFF);
 
-        if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
+        if (version == VERSION_FIRERED || version == VERSION_LEAFGREEN)
             versionId = 0;
         else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
             versionId = 1;
@@ -2862,7 +2862,7 @@ int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct Rf
     u8 partnerVersion = partner.version;
     bool8 isNotFRLG;
 
-    if (partnerVersion == VERSION_FIRE_RED || partnerVersion == VERSION_LEAF_GREEN)
+    if (partnerVersion == VERSION_FIRERED || partnerVersion == VERSION_LEAFGREEN)
         isNotFRLG = FALSE;
     else
         isNotFRLG = TRUE;

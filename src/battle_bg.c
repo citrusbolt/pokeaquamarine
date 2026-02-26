@@ -1008,7 +1008,7 @@ void DrawBattleEntryBackground(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
     {
-        if (gGameVersion == VERSION_FIRE_RED)
+        if (gGameVersion == VERSION_FIRERED)
         {
             LoadBattleTerrainEntryGfx(BATTLE_TERRAIN_CAVE);
         }

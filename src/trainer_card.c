@@ -386,7 +386,7 @@ static const struct TrainerCard sLinkPlayerTrainerCardTemplate1 =
         .easyChatProfile = {0, 0, 0, 0},
         .playerName = _("あかみ どりお")
     },
-    .version = VERSION_FIRE_RED,
+    .version = VERSION_FIRERED,
     .hasAllFrontierSymbols = FALSE,
     .berryCrushPoints = 5555,
     .unionRoomNum = 8500,
@@ -1894,14 +1894,14 @@ static u8 GetCardType(void)
 {
     if (sTrainerCardDataPtr == NULL)
     {
-        if (gGameVersion == VERSION_FIRE_RED || gGameVersion == VERSION_LEAF_GREEN)
+        if (gGameVersion == VERSION_FIRERED || gGameVersion == VERSION_LEAFGREEN)
             return CARD_TYPE_FRLG;
         else
             return CARD_TYPE_RSE;
     }
     else
     {
-        if (sTrainerCardDataPtr->trainerCard.version == VERSION_FIRE_RED || sTrainerCardDataPtr->trainerCard.version == VERSION_LEAF_GREEN)
+        if (sTrainerCardDataPtr->trainerCard.version == VERSION_FIRERED || sTrainerCardDataPtr->trainerCard.version == VERSION_LEAFGREEN)
             return CARD_TYPE_FRLG;
         else
             return CARD_TYPE_RSE;

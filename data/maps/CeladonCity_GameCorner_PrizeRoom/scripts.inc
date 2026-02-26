@@ -84,12 +84,12 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveClefairy::
-	givemon VAR_TEMP_1, 8, VERSION_FIRE_RED
+	givemon VAR_TEMP_1, 8, VERSION_FIRERED
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveDratini::
-	givemon VAR_TEMP_1, 18, VERSION_FIRE_RED
+	givemon VAR_TEMP_1, 18, VERSION_FIRERED
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
@@ -99,7 +99,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_GiveScyther::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GivePorygon::
-	givemon VAR_TEMP_1, 18, VERSION_LEAF_GREEN
+	givemon VAR_TEMP_1, 18, VERSION_LEAFGREEN
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 

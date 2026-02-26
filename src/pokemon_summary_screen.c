@@ -2802,7 +2802,7 @@ static void PokeSum_PrintTrainerMemo_Egg(void)
         {
             version = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_GAME);
 
-            if (version != VERSION_LEAF_GREEN && version != VERSION_FIRE_RED)
+            if (version != VERSION_LEAFGREEN && version != VERSION_FIRERED)
                 chosenStrIndex = 1;
             else if (metLocation == METLOC_SPECIAL_EGG)
                 chosenStrIndex = 2;
@@ -2820,7 +2820,7 @@ static void PokeSum_PrintTrainerMemo_Egg(void)
         {
             version = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_GAME);
 
-            if (version != VERSION_LEAF_GREEN && version != VERSION_FIRE_RED)
+            if (version != VERSION_LEAFGREEN && version != VERSION_FIRERED)
             {
                 if (metLocation == METLOC_SPECIAL_EGG)
                     chosenStrIndex = 5;
@@ -5200,8 +5200,8 @@ static bool32 CurrentMonIsFromGBA(void)
 {
     u8 version = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_GAME);
 
-    if (version == VERSION_LEAF_GREEN
-        || version == VERSION_FIRE_RED
+    if (version == VERSION_LEAFGREEN
+        || version == VERSION_FIRERED
         || version == VERSION_RUBY
         || version == VERSION_SAPPHIRE
         || version == VERSION_EMERALD)

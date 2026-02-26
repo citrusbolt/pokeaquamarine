@@ -3513,7 +3513,7 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
 
     if (linkPlayerObjEvent->active)
     {
-        if (gameVersion == VERSION_FIRE_RED || gameVersion == VERSION_LEAF_GREEN)
+        if (gameVersion == VERSION_FIRERED || gameVersion == VERSION_LEAFGREEN)
         {
             objEvent->spriteId = CreateObjectGraphicsSprite(
                 GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, linkGender(objEvent)),

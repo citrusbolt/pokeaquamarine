@@ -1165,8 +1165,8 @@ static u32 IsTryingToTradeAcrossVersionTooSoon(struct WirelessLink_Group * data,
     struct RfuPlayer * partner = &data->playerList->players[id];
 
     if (sPlayerCurrActivity == ACTIVITY_TRADE 
-     && partner->rfu.data.compatibility.version != VERSION_FIRE_RED
-     && partner->rfu.data.compatibility.version != VERSION_LEAF_GREEN)
+     && partner->rfu.data.compatibility.version != VERSION_FIRERED
+     && partner->rfu.data.compatibility.version != VERSION_LEAFGREEN)
     {
         if (!(gSaveBlock2Ptr->specialSaveWarpFlags & CHAMPION_SAVEWARP))
             return UR_TRADE_PLAYER_NOT_READY;
