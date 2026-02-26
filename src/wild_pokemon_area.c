@@ -239,14 +239,12 @@ static s32 GetRoamerPokedexAreaMarkers(u16 species, struct Subsprite * subsprite
     u16 dexArea;
     s32 tableIndex;
 
-    // Make sure that this is a roamer species, and that it corresponds to the player's starter.
+    // Make sure that this is a roamer species
     roamerIdx = GetRoamerIndex(species);
     if (roamerIdx < 0)
         return 0;
-    if (sRoamerPairs[roamerIdx].starter != GetStarterSpecies())
-        return 0;
 
-    mapSecId = GetRoamerLocationMapSectionId();
+    mapSecId = GetRoamerLocationMapSectionId(species);
     tableIndex = 0;
     if (FindDexAreaByMapSec(mapSecId, sDexAreas_Kanto, ARRAY_COUNT(sDexAreas_Kanto), &tableIndex, &dexArea))
     {

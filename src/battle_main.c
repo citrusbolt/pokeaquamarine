@@ -3924,7 +3924,7 @@ static void ReturnFromBattleToOverworld(void)
         {
             UpdateRoamerHPStatus(&gEnemyParty[0]);
             if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT)
-                SetRoamerInactive();
+                SetRoamerInactive(&gEnemyParty[0]);
         }
         m4aSongNumStop(SE_LOW_HEALTH);
         SetMainCallback2(gMain.savedCallback);
