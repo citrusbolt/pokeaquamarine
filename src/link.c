@@ -316,6 +316,7 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.linkType = gLinkType;
     gLocalLinkPlayer.language = gGameLanguage;
     gLocalLinkPlayer.version = gGameVersion + 0x4000;
+    gLocalLinkPlayer.versionModifier = VERSION_MODIFIER;
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     gLocalLinkPlayer.progressFlags = IsNationalPokedexEnabled();
     if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS))
@@ -576,7 +577,6 @@ static void ProcessRecvCmds(u8 unused)
                     if ((linkPlayer->version & 0xFF) == VERSION_RUBY || (linkPlayer->version & 0xFF) == VERSION_SAPPHIRE)
                     {
                         linkPlayer->progressFlagsCopy = 0;
-                        linkPlayer->neverRead = 0;
                         linkPlayer->progressFlags = 0;
                     }
                     ConvertLinkPlayerName(linkPlayer);
@@ -2100,5 +2100,49 @@ void ResetRecvBuffer(void)
             for (k = 0; k < QUEUE_CAPACITY; k++)
                 gLink.recvQueue.data[i][j][k] = LINKCMD_NONE;
         }
+    }
+}
+
+u16 GetLinkVersion(u8 version, u8 versionModifier)
+{
+    switch (versionModifier)
+    {
+        case DEV_CITRUS_BOLT:
+            return LINK_VERSION_HELIODOR;
+        case DEV_CITRUS_BOLT_2:
+            return LINK_VERSION_AQUAMARINE;
+        case DEV_JAIZU:
+            if (version == VERSION_EMERALD)
+                return LINK_VERSION_EMERALD_CROSS;
+            else if (version == VERSION_FIRERED)
+                return LINK_VERSION_RECHARGED_YELLOW;
+            break;
+    }
+
+    switch (version)
+    {
+        case VERSION_RUBY:
+        default:
+            return LINK_VERSION_RUBY;
+        case VERSION_SAPPHIRE:
+            return LINK_VERSION_SAPPHIRE;
+        case VERSION_COLOXD:
+            return LINK_VERSION_COLOXD;
+        case VERSION_FIRERED:
+            return LINK_VERSION_FIRERED;
+        case VERSION_LEAFGREEN:
+            return LINK_VERSION_LEAFGREEN;
+        case VERSION_EMERALD:
+            return LINK_VERSION_EMERALD;
+        case VERSION_DIAMOND:
+            return LINK_VERSION_DIAMOND;
+        case VERSION_PEARL:
+            return LINK_VERSION_PEARL;
+        case VERSION_PLATINUM:
+            return LINK_VERSION_PLATINUM;
+        case VERSION_HEARTGOLD:
+            return LINK_VERSION_HEARTGOLD;
+        case VERSION_SOULSILVER:
+            return LINK_VERSION_SOULSILVER;
     }
 }

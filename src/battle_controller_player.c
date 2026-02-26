@@ -2173,7 +2173,7 @@ static void PlayerHandleDrawTrainerPic(void)
         xPos = 80;
     }
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-    {
+    { // TO-DO: versionModifier
         if ((gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_RUBY
          || (gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_SAPPHIRE
          || (gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_EMERALD)
@@ -2203,7 +2203,7 @@ static void PlayerHandleTrainerSlide(void)
     u32 trainerPicId;
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-    {
+    { // TO-DO: versionModifier
         if ((gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_RUBY
          || (gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_SAPPHIRE
          || (gLinkPlayers[GetMultiplayerId()].version & 0xFF) == VERSION_EMERALD)

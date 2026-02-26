@@ -201,7 +201,7 @@ static void GetLinkPlayerCoords(u8 linkPlayerId, u16 *x, u16 *y);
 static u8 GetLinkPlayerFacingDirection(u8 linkPlayerId);
 static u8 GetLinkPlayerElevation(u8 linkPlayerId);
 static u8 GetLinkPlayerIdAt(s16 x, s16 y);
-static void CreateLinkPlayerSprite(u8 i, u8 version);
+static void CreateLinkPlayerSprite(u8 i, u8 version, u32 versionModifier);
 static u8 MovementEventModeCB_Normal(struct LinkPlayerObjectEvent *, struct ObjectEvent *, u8);
 static u8 MovementEventModeCB_Ignored(struct LinkPlayerObjectEvent *, struct ObjectEvent *, u8);
 static u8 MovementEventModeCB_Normal_2(struct LinkPlayerObjectEvent *, struct ObjectEvent *, u8);
@@ -2180,7 +2180,7 @@ static void SpawnLinkPlayers(void)
     for (i = 0; i < gFieldLinkPlayerCount; i++)
     {
         SpawnLinkPlayerObjectEvent(i, i + x, y, gLinkPlayers[i].gender);
-        CreateLinkPlayerSprite(i, gLinkPlayers[i].version);
+        CreateLinkPlayerSprite(i, gLinkPlayers[i].version, gLinkPlayers[i].versionModifier);
     }
 
     ClearAllPlayerKeys();
@@ -2190,7 +2190,7 @@ static void CreateLinkPlayerSprites(void)
 {
     u16 i;
     for (i = 0; i < gFieldLinkPlayerCount; i++)
-        CreateLinkPlayerSprite(i, gLinkPlayers[i].version);
+        CreateLinkPlayerSprite(i, gLinkPlayers[i].version, gLinkPlayers[i].versionModifier);
 }
 
 // Quest Log
@@ -3504,7 +3504,7 @@ static bool8 LinkPlayerDetectCollision(u8 selfObjEventId, u8 a2, s16 x, s16 y)
     return MapGridGetCollisionAt(x, y);
 }
 
-static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
+static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion, u32 versionModifier)
 {
     struct LinkPlayerObjectEvent *linkPlayerObjEvent = &gLinkPlayerObjectEvents[linkPlayerId];
     u8 objEventId = linkPlayerObjEvent->objEventId;
@@ -3513,15 +3513,47 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
 
     if (linkPlayerObjEvent->active)
     {
-        if (gameVersion == VERSION_FIRERED || gameVersion == VERSION_LEAFGREEN)
+        switch (GetLinkVersion(gameVersion, versionModifier))
         {
-            objEvent->spriteId = CreateObjectGraphicsSprite(
-                GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, linkGender(objEvent)),
-                SpriteCB_LinkPlayer, 0, 0, 0);
-        }
-        else
-        {
-            objEvent->spriteId = CreateObjectGraphicsSprite(GetRSAvatarGraphicsIdByGender(linkGender(objEvent)), SpriteCB_LinkPlayer, 0, 0, 0);
+            case LINK_VERSION_RUBY:
+            case LINK_VERSION_SAPPHIRE:
+            default:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_BRENDAN, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_MAY, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
+            case LINK_VERSION_FIRERED:
+            case LINK_VERSION_LEAFGREEN:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RED_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GREEN_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
+            case LINK_VERSION_EMERALD:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_BRENDAN, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_MAY, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
+            case LINK_VERSION_HELIODOR:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_BRENDAN, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RS_MAY, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
+            case LINK_VERSION_RECHARGED_YELLOW:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RED_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GREEN_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
+            case LINK_VERSION_AQUAMARINE:
+                if (linkGender(objEvent) == MALE)
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_RED_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                else
+                    objEvent->spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GREEN_NORMAL, SpriteCB_LinkPlayer, 0, 0, 0);
+                break;
         }
 
         sprite = &gSprites[objEvent->spriteId];
