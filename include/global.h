@@ -804,7 +804,8 @@ struct SaveBlock1
     /*0x30EC*/ struct EnigmaBerry enigmaBerry;
     /*0x3120*/ struct MysteryGiftSave mysteryGift;
     /*0x348C*/ struct Roamer extraRoamers[2];
-    /*0x34C4*/ u8 unused_348C[344];
+    /*0x34C4*/ u16 rubySapphireSecretId;
+    /*0x34C6*/ u8 unused_348C[342];
     /*0x361C*/ struct RamScript ramScript;
     /*0x3A08*/ struct RecordMixingGift recordMixingGift; // unused
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];

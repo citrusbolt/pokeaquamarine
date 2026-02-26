@@ -6380,9 +6380,16 @@ bool8 IsTradedMon(struct Pokemon *mon)
 {
     u8 otName[PLAYER_NAME_LENGTH + 1];
     u32 otId;
+    u8 originGame;
+
     GetMonData(mon, MON_DATA_OT_NAME, otName);
     otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
-    return IsOtherTrainer(otId, otName);
+    originGame = GetMonData(mon, MON_DATA_MET_GAME, 0);
+
+    if (originGame == VERSION_RUBY || originGame == VERSION_SAPPHIRE)
+        return IsOtherTrainerRS(otId, otName) || IsOtherTrainer(otId, otName);
+    else
+        return IsOtherTrainer(otId, otName);
 }
 
 bool8 IsOtherTrainer(u32 otId, u8 *otName)
@@ -6392,6 +6399,24 @@ bool8 IsOtherTrainer(u32 otId, u8 *otName)
          | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
          | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
          | (gSaveBlock2Ptr->playerTrainerId[3] << 24)))
+    {
+        int i;
+
+        for (i = 0; otName[i] != EOS; i++)
+            if (otName[i] != gSaveBlock2Ptr->playerName[i])
+                return TRUE;
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+bool8 IsOtherTrainerRS(u32 otId, u8 *otName)
+{
+    if (otId ==
+        (gSaveBlock2Ptr->playerTrainerId[0]
+         | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+         | (gSaveBlock1Ptr->rubySapphireSecretId << 16)))
     {
         int i;
 
