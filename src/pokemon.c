@@ -6647,6 +6647,9 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
         if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
     }
+
+    if (caseId == FLAG_GET_CAUGHT && NationalPokedexNumToSpecies(nationalNum) == SPECIES_UNOWN)
+        gSaveBlock2Ptr->pokedex.unownForms |= 1 << GET_UNOWN_LETTER(personality);
 }
 
 bool8 CheckBattleTypeGhost(struct Pokemon *mon, u8 battlerId)

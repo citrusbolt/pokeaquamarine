@@ -60,10 +60,10 @@ void ClearTempFieldEventData(void)
 // Unused
 static void DisableNationalPokedex_RSE(void)
 {
-    u16 *ptr = GetVarPointer(VAR_0x403C);
-    gSaveBlock2Ptr->pokedex.unused = 0;
+    u16 *ptr = GetVarPointer(VAR_RS_NATIONAL_DEX);
+    gSaveBlock2Ptr->pokedex.rsNationalMagic = 0;
     *ptr = 0;
-    FlagClear(FLAG_0x838);
+    FlagClear(FLAG_SYS_RS_NATIONAL_DEX);
 }
 
 // The magic numbers used here (0xDA and 0x0302) correspond to those
@@ -71,18 +71,18 @@ static void DisableNationalPokedex_RSE(void)
 void EnableNationalPokedex_RSE(void)
 {
     // Note: the var, struct member, and flag are never used
-    u16 *ptr = GetVarPointer(VAR_0x403C);
-    gSaveBlock2Ptr->pokedex.unused = 0xDA;
+    u16 *ptr = GetVarPointer(VAR_RS_NATIONAL_DEX);
+    gSaveBlock2Ptr->pokedex.rsNationalMagic = 0xDA;
     *ptr = 0x0302;
-    FlagSet(FLAG_0x838);
+    FlagSet(FLAG_SYS_RS_NATIONAL_DEX);
 }
 
 // Unused
 static bool32 IsNationalPokedexEnabled_RSE(void)
 {
-    if (gSaveBlock2Ptr->pokedex.unused == 0xDA
-            && VarGet(VAR_0x403C) == 0x0302
-            && FlagGet(FLAG_0x838))
+    if (gSaveBlock2Ptr->pokedex.rsNationalMagic == 0xDA
+            && VarGet(VAR_RS_NATIONAL_DEX) == 0x0302
+            && FlagGet(FLAG_SYS_RS_NATIONAL_DEX))
         return TRUE;
 
     return FALSE;

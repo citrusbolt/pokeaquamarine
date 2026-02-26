@@ -107,7 +107,7 @@
 #define VAR_FANCLUB_LOSE_FAN_TIMER         0x4039
 #define VAR_ELEVATOR_FLOOR                 0x403A
 #define VAR_RESORT_GORGEOUS_REWARD         0x403B
-#define VAR_0x403C                         0x403C // Set to 0x0302, never read
+#define VAR_RS_NATIONAL_DEX                0x403C // Set to 0x0302, never read
 #define VAR_HERACROSS_SIZE_RECORD          0x403D
 #define VAR_DEOXYS_INTERACTION_NUM         0x403E
 #define VAR_0x403F                         0x403F
