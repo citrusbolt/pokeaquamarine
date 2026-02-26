@@ -32,22 +32,22 @@ struct GFRomHeader
     u32 mysteryGiftFlag;
     u32 pokedexCount;
     u8 playerNameLength;
-    u8 unk2;
+    u8 trainerNameLength;
     u8 pokemonNameLength1;
     u8 pokemonNameLength2;
-    u8 unk5;
-    u8 unk6;
-    u8 unk7;
-    u8 unk8;
-    u8 unk9;
-    u8 unk10;
-    u8 unk11;
-    u8 unk12;
-    u8 unk13;
-    u8 unk14;
-    u8 unk15;
-    u8 unk16;
-    u8 unk17;
+    u8 moveNameLength;
+    u8 itemNameLength;
+    u8 berryNameLength;
+    u8 abilityNameLength;
+    u8 typeNameLength;
+    u8 mapNameLength1;
+    u8 mapNameLength2;
+    u8 trainerClassNameLength;
+    u8 decorationNameLength;
+    u8 dexCategoryNameLength;
+    u8 endOfStringLength;
+    u8 frontierTrainerNameLength;
+    u8 easyChatWordLength;
     u32 saveBlock2Size;
     u32 saveBlock1Size;
     u32 partyCountOffset;
@@ -56,11 +56,13 @@ struct GFRomHeader
     u32 trainerIdOffset;
     u32 playerNameOffset;
     u32 playerGenderOffset;
-    u32 unkFlagOffset;
-    u32 unkFlagOffset2;
+    u32 frontierStatusOffset1;
+    u32 frontierStatusOffset2;
     u32 externalEventFlagsOffset;
     u32 externalEventDataOffset;
-    u32 unk18;
+    u32 blockLinkBoxRS:1;
+    u32 blockLinkColoXD:1;
+    u32 blockLinkUnused:30;
     const struct SpeciesInfo * speciesInfo;
     const u8 (* abilityNames)[];
     const u8 *const * abilityDescriptions;
@@ -82,7 +84,7 @@ struct GFRomHeader
     u32 enigmaBerryOffset;
     u32 enigmaBerrySize;
     const u8 * moveDescriptions;
-    u32 unk20;
+    u32 unknown;
 };
 
 // This seems to need to be in the text section for some reason.
@@ -112,23 +114,22 @@ static const struct GFRomHeader sGFRomHeader = {
     .mysteryGiftFlag = FLAG_SYS_MYSTERY_GIFT_ENABLED,
     .pokedexCount = NATIONAL_DEX_COUNT,
     .playerNameLength = PLAYER_NAME_LENGTH,
-    .unk2 = 10,
+    .trainerNameLength = 10,
     .pokemonNameLength1 = POKEMON_NAME_LENGTH,
     .pokemonNameLength2 = POKEMON_NAME_LENGTH,
-    // Two of the below 12s are likely move/ability name length, given their presence in this header
-    .unk5 = 12,
-    .unk6 = 12,
-    .unk7 = 6,
-    .unk8 = 12,
-    .unk9 = 6,
-    .unk10 = 16,
-    .unk11 = 18,
-    .unk12 = 12,
-    .unk13 = 15,
-    .unk14 = 11,
-    .unk15 = 1,
-    .unk16 = 8,
-    .unk17 = 12,
+    .moveNameLength = MOVE_NAME_LENGTH,
+    .itemNameLength = ITEM_NAME_LENGTH - 2,
+    .berryNameLength = BERRY_NAME_LENGTH,
+    .abilityNameLength = ABILITY_NAME_LENGTH,
+    .typeNameLength = TYPE_NAME_LENGTH,
+    .mapNameLength1 = 16,
+    .mapNameLength2 = 18,
+    .trainerClassNameLength = 12,
+    .decorationNameLength = 15,
+    .dexCategoryNameLength = 11,
+    .endOfStringLength = 1, // One byte, come on man...
+    .frontierTrainerNameLength = PLAYER_NAME_LENGTH,
+    .easyChatWordLength = 12,
     .saveBlock2Size = sizeof(struct SaveBlock2),
     .saveBlock1Size = sizeof(struct SaveBlock1),
     .partyCountOffset = offsetof(struct SaveBlock1, playerPartyCount),
@@ -137,11 +138,13 @@ static const struct GFRomHeader sGFRomHeader = {
     .trainerIdOffset = offsetof(struct SaveBlock2, playerTrainerId),
     .playerNameOffset = offsetof(struct SaveBlock2, playerName),
     .playerGenderOffset = offsetof(struct SaveBlock2, playerGender),
-    .unkFlagOffset = offsetof(struct SaveBlock2, unkFlag2),
-    .unkFlagOffset2 = offsetof(struct SaveBlock2, unkFlag2),
+    .frontierStatusOffset1 = offsetof(struct SaveBlock2, unkFlag2),
+    .frontierStatusOffset2 = offsetof(struct SaveBlock2, unkFlag2),
     .externalEventFlagsOffset = offsetof(struct SaveBlock1, externalEventFlags),
     .externalEventDataOffset = offsetof(struct SaveBlock1, externalEventData),
-    .unk18 = 0x00000000,
+    .blockLinkBoxRS = FALSE,
+    .blockLinkColoXD = FALSE,
+    .blockLinkUnused = 0,
     .speciesInfo = gSpeciesInfo,
     .abilityNames = gAbilityNames,
     .abilityDescriptions = gAbilityDescriptionPointers,
@@ -163,5 +166,5 @@ static const struct GFRomHeader sGFRomHeader = {
     .enigmaBerryOffset = offsetof(struct SaveBlock1, enigmaBerry),
     .enigmaBerrySize = sizeof(struct EnigmaBerry),
     .moveDescriptions = NULL,
-    .unk20 = 0xFFFFFFFF, // 0x00000000 in Emerald
+    .unknown = 0xFFFFFFFF, // 0x00000000 in Emerald
 };
