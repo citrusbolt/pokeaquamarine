@@ -32,6 +32,7 @@
 
 // this file's functions
 static void ResetMiniGamesResults(void);
+static void IssueRSSID(void);
 
 // EWRAM vars
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
@@ -157,4 +158,23 @@ static void ResetMiniGamesResults(void)
     SetBerryPowder(&gSaveBlock2Ptr->berryCrush.berryPowderAmount, 0);
     ResetPokemonJumpRecords();
     CpuFill16(0, &gSaveBlock2Ptr->berryPick, sizeof(struct BerryPickingResults));
+}
+
+void IssueRSSID(void)
+{
+    u16 otid, ntid, sid;
+
+    gDisableVBlankRNGAdvance = TRUE;
+    otid = (gSaveBlock2Ptr->playerTrainerId[1] << 8) | gSaveBlock2Ptr->playerTrainerId[0];
+    sid = Random();
+    ntid = Random();
+
+    while (ntid != otid)
+    {
+        sid = ntid;
+        ntid = Random();
+    }
+
+    gSaveBlock1Ptr->rubySapphireSecretId = sid;
+    gDisableVBlankRNGAdvance = FALSE;
 }
