@@ -371,7 +371,7 @@ bool8 TryStartRoamerEncounter(void)
     if (id > 0 && (Random() % 4) == 0)
     {
         CreateRoamerMonInstance(id);
-        return TRUE;
+        return id;
     }
     else
     {

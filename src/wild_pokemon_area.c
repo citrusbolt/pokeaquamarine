@@ -181,16 +181,17 @@ s32 GetSpeciesPokedexAreaMarkers(u16 species, struct Subsprite * subsprites)
     alteringCaveNum = VarGet(VAR_ALTERING_CAVE_WILD_SET);
     if (alteringCaveNum >= NUM_ALTERING_CAVE_TABLES)
         alteringCaveNum = 0;
-    for (i = 0, areaCount = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
+    // TO-DO: Display LG locations
+    for (i = 0, areaCount = 0; gWildMonHeadersFRLG[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
     {
-        mapSecId = GetMapSecIdFromWildMonHeader(&gWildMonHeaders[i]);
+        mapSecId = GetMapSecIdFromWildMonHeader(&gWildMonHeadersFRLG[i]);
         if (mapSecId == MAPSEC_ALTERING_CAVE)
         {
             alteringCaveCount++;
             if (alteringCaveNum != alteringCaveCount - 1)
                 continue;
         }
-        if (IsSpeciesOnMap(&gWildMonHeaders[i], species))
+        if (IsSpeciesOnMap(&gWildMonHeadersFRLG[i], species))
         {
             // Search for all dex areas associated with this MAPSEC.
             // In the vanilla game each MAPSEC only has at most one DEX_AREA.

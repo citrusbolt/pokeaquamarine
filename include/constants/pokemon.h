@@ -329,8 +329,10 @@
 
 #define ENCOUNTER_FAIL    0
 #define ENCOUNTER_SUCCESS 1
-#define ENCOUNTER_ROAMER  2
-#define ENCOUNTER_SWARM   3
+#define ENCOUNTER_ROAMER_1 2
+#define ENCOUNTER_ROAMER_2 3
+#define ENCOUNTER_ROAMER_3 4
+#define ENCOUNTER_SWARM   5
 
 #define MINT_NONE       0
 #define MINT_LONELY     1

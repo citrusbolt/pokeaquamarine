@@ -71,6 +71,7 @@ static IntrFunc * const sTimerIntrFunc = gIntrTable + 0x7;
 
 EWRAM_DATA u8 gDecompressionBuffer[0x4000] = {0};
 EWRAM_DATA u16 gTrainerId = 0;
+EWRAM_DATA bool8 gDisableVBlankRNGAdvance = FALSE;
 
 static void UpdateLinkAndCallCallbacks(void);
 static void InitMainCallbacks(void);
@@ -378,7 +379,10 @@ static void VBlankIntr(void)
 #endif
 
     TryReceiveLinkBattleData();
-    Random();
+
+    if (!gMain.inBattle || !(gBattleTypeFlags & BATTLE_TYPE_LINK && !gDisableVBlankRNGAdvance))
+        Random();
+
     UpdateWirelessStatusIndicatorSprite();
 
     INTR_CHECK |= INTR_FLAG_VBLANK;
