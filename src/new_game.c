@@ -56,6 +56,7 @@ static void InitPlayerTrainerId(void)
 {
     u32 trainerId = (Random() << 0x10) | GetGeneratedTrainerIdLower();
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
+    IssueRSSID();
 }
 
 static void SetDefaultOptions(void)
