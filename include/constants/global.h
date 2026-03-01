@@ -67,6 +67,7 @@
 #define DEV_JAIZU                   4   // 3-4 is Emerald Cross, 4-4 is Recharged Yellow
 #define DEV_BOX_RS                  5   // Force this tag upon Box Eggs to track them once they are hatched
 #define DEV_CITRUS_BOLT_2           6   // 5-6 is Aquamarine
+#define DEV_JAIZU_2                 7   // Fairly sure its used in Recharged Emerald
 
 #define LINK_VERSION_RUBY               0
 #define LINK_VERSION_SAPPHIRE           1
