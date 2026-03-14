@@ -1290,17 +1290,17 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
     {
         PlaySE(SE_SELECT);
 
-        //if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10) == TRUE)
-        //{
-        //    if (tItemCount > 19)
-        //    {
-        //       BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
-        //    }
-        //    else
-        //    {
-        //       BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
-        //    }
-        //}
+        if ((ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS) && tItemCount > 9 && AddBagItem(ITEM_PREMIER_BALL, tItemCount / 10) == TRUE)
+        {
+            if (tItemCount > 19)
+            {
+               BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBalls, BuyMenuReturnToItemList);
+            }
+            else
+            {
+               BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
+            }
+        }
 
         BuyMenuReturnToItemList(taskId);
     }
